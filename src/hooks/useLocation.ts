@@ -23,7 +23,8 @@ export const useLocation = () => {
         // if there was an error getting the users location
         (error) => {
           console.error("Error getting user location:", error);
-        }
+        },
+        { maximumAge: 8000, enableHighAccuracy: true, timeout: 10000 }
       );
     }
     // if geolocation is not supported by the users browser

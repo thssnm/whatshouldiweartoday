@@ -34,7 +34,6 @@ export const normalize = (data: {
     minute: "2-digit",
   });
   const wind = data?.wind?.speed * 3.6;
-  console.log("normalizer:", rain.toFixed(1));
 
   const additionalInfo = [
     temp.toFixed(1) + " °C",
