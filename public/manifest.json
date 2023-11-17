@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "WhatShouldIWearToday",
+  "name": "What Should I Wear Today",
   "icons": [
     {
       "src": "favicon.ico",
