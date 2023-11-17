@@ -8,14 +8,9 @@ export const normalize = (data: {
   sys: any;
 }) => {
   const now = Date.now();
-  console.log(
-    "sun:",
-    now > data?.sys?.sunrise,
-    now < data?.sys?.sunset,
-    now,
-    data.sys.sunset
-  );
-  const sunglasses = data?.clouds?.all <= 50 ? "sunglasses" : undefined;
+
+  const sun = now > data?.sys?.sunrise && now < data?.sys?.sunset;
+  const sunglasses = data?.clouds?.all <= 50 && sun ? "sunglasses" : undefined;
   const rain = data?.rain ? data.rain["1h"] + data.rain["3h"] : 0;
   const umbrella = rain >= 0.5 ? "umbrella" : undefined;
   const temp = data?.main.temp - 273.15 || 0;
