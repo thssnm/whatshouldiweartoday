@@ -48,6 +48,10 @@ function App() {
               event.preventDefault();
               setLocation(searchInput);
             }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
             <Input
               placeholder="Cologne"
