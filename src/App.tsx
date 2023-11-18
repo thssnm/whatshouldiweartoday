@@ -17,8 +17,11 @@ function App() {
 
   const [showAdditionalInfos, toggleAdditionalInfos] = React.useState(false);
 
+  const inputRef = React.useRef<any>(null);
+
   const getLocation = () => {
     getUserLocation();
+    inputRef.current.value = "";
     setLocation(userLocation);
   };
 
@@ -54,7 +57,8 @@ function App() {
             }}
           >
             <Input
-              placeholder="Cologne"
+              placeholder={"search city name"}
+              slotProps={{ input: { ref: inputRef } }}
               onChange={(event) =>
                 event.currentTarget.value
                   ? setSearchInput(event.currentTarget.value)
