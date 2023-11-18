@@ -7,9 +7,11 @@ export const normalize = (data: {
   wind: { speed: number };
   sys: any;
 }) => {
-  const now = Date.now();
+  const now = new Date();
+  const sunrise = new Date(data.sys.sunrise * 1000);
+  const sunset = new Date(data.sys.sunset * 1000);
+  const sun = now > sunrise && now < sunset;
 
-  const sun = now > data?.sys?.sunrise && now < data?.sys?.sunset;
   const sunglasses = data?.clouds?.all <= 50 && sun ? "sunglasses" : undefined;
   const rain = data?.rain ? data.rain["1h"] + data.rain["3h"] : 0;
   const umbrella = rain >= 0.5 ? "umbrella" : undefined;
