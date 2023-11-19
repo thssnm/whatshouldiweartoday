@@ -19,11 +19,17 @@ function App() {
 
   const inputRef = React.useRef<any>(null);
 
-  const getLocation = () => {
+  const getLocation = React.useCallback(() => {
     getUserLocation();
     inputRef.current.value = "";
     setLocation(userLocation);
-  };
+  }, [getUserLocation, userLocation]);
+
+  React.useEffect(() => {
+    getLocation();
+    console.log("effectLocation");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="App">
