@@ -74,6 +74,7 @@ function App() {
           <form
             onSubmit={(event) => {
               event.preventDefault();
+              inputRef.current.blur();
               setLocation(searchInput);
             }}
             style={{
