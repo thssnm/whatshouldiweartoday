@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 
 const fetchLocation = (ip: string) => {
-  return fetch("http://ip-api.com/json/" + ip).then((res) =>
+  return fetch("https://ip-api.com/json/" + ip).then((res) =>
     res.json().then((response) => {
       return response.city;
     })
