@@ -27,6 +27,7 @@ function App() {
 
   const getLocation = React.useCallback(() => {
     if (isChrome && locationFromIp) {
+      toggleAdditionalInfos(false);
       setLocation(locationFromIp);
       inputRef.current.value = "";
       return;
@@ -34,6 +35,7 @@ function App() {
     getUserLocation();
     inputRef.current.value = "";
     setLocation(userLocation);
+    toggleAdditionalInfos(false);
   }, [getUserLocation, isChrome, locationFromIp, userLocation]);
 
   React.useEffect(() => {
@@ -76,6 +78,7 @@ function App() {
               event.preventDefault();
               inputRef.current.blur();
               setLocation(searchInput);
+              toggleAdditionalInfos(false);
             }}
             style={{
               display: "flex",
