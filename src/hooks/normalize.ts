@@ -1,4 +1,5 @@
 export const normalize = (data: {
+  cod: string;
   clouds: { all: number };
   rain: { [x: string]: any };
   main: { temp: number };
@@ -7,15 +8,25 @@ export const normalize = (data: {
   wind: { speed: number };
   sys: any;
 }) => {
+  if (data.cod === "404") {
+    return {
+      name: "no result",
+      extras: [],
+      top: "",
+      legs: "",
+      bottom: "",
+      additionalInfo: [],
+    };
+  }
   const now = new Date();
-  const sunrise = new Date(data.sys.sunrise * 1000);
-  const sunset = new Date(data.sys.sunset * 1000);
+  const sunrise = new Date(data?.sys?.sunrise * 1000);
+  const sunset = new Date(data?.sys?.sunset * 1000);
   const sun = now > sunrise && now < sunset;
 
   const sunglasses = data?.clouds?.all <= 50 && sun ? "sunglasses" : undefined;
-  const rain = data?.rain ? data.rain["1h"] + data.rain["3h"] : 0;
+  const rain = data?.rain ? data?.rain["1h"] + data?.rain["3h"] : 0;
   const umbrella = rain >= 0.5 ? "umbrella" : undefined;
-  const temp = data?.main.temp - 273.15 || 0;
+  const temp = data?.main?.temp - 273.15 || 0;
   const beanie = temp <= 5 ? "beanie" : undefined;
   const scarf = temp <= 0 ? "scarf" : undefined;
   const extras = [umbrella, beanie, sunglasses, scarf].filter(Boolean);
